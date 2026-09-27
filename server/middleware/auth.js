@@ -25,20 +25,18 @@ export const protect = async(req, res, next) => {
                     req.user = user;
                     return next();
                 }
-            } catch (_) { /* fall through */ }
+            } catch (err) { /* fall through */ }
         }
 
         // In-memory fallback
-        const memUser = inMemoryUsers.find(u => u._id === userId);
+        const memUser = inMemoryUsers.find(u => u._id === userId || u.id === userId);
         if (memUser) {
-            req.user = { _id: memUser._id, fullName: memUser.fullName, email: memUser.email, role: memUser.role, phone: memUser.phone, avatar: memUser.avatar };
+            req.user = memUser;
             return next();
         }
 
-        req.user = { _id: userId, fullName: 'SJP User', email: '', role: 'Faculty Teacher', phone: '', avatar: 'SJP' };
-        return next();
-
-    } catch (err) {
-        return res.status(401).json({ success: false, message: 'Token is invalid or expired.' });
+        return res.status(401).json({ success: false, message: 'Not authorized, user not found' });
+    } catch (error) {
+        return res.status(401).json({ success: false, message: 'Not authorized, token failed' });
     }
 };
