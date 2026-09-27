@@ -1,12 +1,12 @@
 const API_BASE_URL =
-    import.meta.env.VITE_API_BASE_URL || 'https://school-erp-md0r.onrender.com/api';
+    import.meta.env.VITE_API_BASE_URL || 'https://school-erp-md0r.onrender.com';
 
 /**
  * Register a new user in MongoDB backend & get JWT token
  */
 export const registerUser = async(userData) => {
     try {
-        const response = await fetch(`${API_BASE_URL}/auth/signup`, {
+        const response = await fetch(`${API_BASE_URL}/api/auth/signup`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -31,7 +31,7 @@ export const registerUser = async(userData) => {
  */
 export const loginUser = async(credentials) => {
     try {
-        const response = await fetch(`${API_BASE_URL}/auth/login`, {
+        const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -56,7 +56,7 @@ export const loginUser = async(credentials) => {
  */
 export const getAuthProfile = async(token) => {
     try {
-        const response = await fetch(`${API_BASE_URL}/auth/me`, {
+        const response = await fetch(`${API_BASE_URL}/api/auth/me`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -81,7 +81,7 @@ export const getAuthProfile = async(token) => {
  */
 export const checkBackendHealth = async() => {
     try {
-        const response = await fetch(`${API_BASE_URL}/health`, {
+        const response = await fetch(`${API_BASE_URL}/api/health`, {
             method: 'GET',
         });
         return await response.json();
@@ -95,7 +95,7 @@ export const checkBackendHealth = async() => {
  */
 export const markAttendance = async(attendanceData) => {
     try {
-        const response = await fetch(`${API_BASE_URL}/attendance/mark`, {
+        const response = await fetch(`${API_BASE_URL}/api/attendance/mark`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -120,7 +120,7 @@ export const markAttendance = async(attendanceData) => {
  */
 export const fetchAttendanceRecords = async() => {
     try {
-        const response = await fetch(`${API_BASE_URL}/attendance/all`, {
+        const response = await fetch(`${API_BASE_URL}/api/attendance/all`, {
             method: 'GET',
         });
         return await response.json();
