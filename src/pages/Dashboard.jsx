@@ -305,7 +305,7 @@ export default function Dashboard({ students = [], teachers = [], classes = [], 
       </div>
 
       {/* Daily Class Bell Schedule Overview & Recent Notices */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(420px, 1fr))', gap: '24px' }}>
+      <div className="dashboard-bottom-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(420px, 1fr))', gap: '24px' }}>
         {/* Daily Bell Schedule Snippet */}
         <div className="card">
           <div className="card-header">
